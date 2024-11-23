@@ -139,11 +139,11 @@ const App = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700">Gender</label>
-                <label htmlFor="male" className='mr-4'>
+                <label htmlFor="male-check" className='mr-4' id='male'>
                   <input
                     type="radio"
                     className="mt-1"
-                    id='male'
+                    id='male-check'
                     value="Male"
                     name='gender'
                     onChange={(e) => {
@@ -151,11 +151,11 @@ const App = () => {
                     }}
                   />Male
                 </label>
-                <label htmlFor="female">
+                <label htmlFor="female-check" id='female'>
                   <input
                     type="radio"
                     className="mt-1"
-                    id='female'
+                    id='female-check'
                     value="Female"
                     name='gender'
                     onChange={(e) => {
