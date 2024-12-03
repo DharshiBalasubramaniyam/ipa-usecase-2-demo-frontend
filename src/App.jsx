@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-6 text-center">IPA use case 2</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">Student application form</h1>
 
         {
           finalForm ? (
