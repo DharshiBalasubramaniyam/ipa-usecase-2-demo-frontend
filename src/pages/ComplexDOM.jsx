@@ -5,16 +5,11 @@ import { useState } from 'react';
 function ComplexDOM() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [noOfClicks, setNoOfClicks] = useState(0);
 
     useEffect(() => {
         document.title = "Complex DOM";
     }, []);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setEmail(e.target.email.value);
-        setMessage(e.target.message.value);
-    };
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -32,13 +27,22 @@ function ComplexDOM() {
                 <section id="home" className="mb-8 flex flex-col items-center">
                     <h2 className="text-2xl font-semibold">Home</h2>
                     <p className="mb-4">Welcome to the Selenium practice page.</p>
-                    <button id="home-button" className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => {
-                        if (confirm('Do you want to proceed?')) {
-                            document.getElementById('home-button').textContent = 'Happy';
-                        } else {
-                            document.getElementById('home-button').textContent = 'Sad';
-                        }
-                    }}>Click Me</button>
+                    <p id='hidden-element' className='hidden'>Hidden Text</p>
+                    <div className="flex space-x-4">
+                        <button id="home-button" className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => {
+                            if (confirm('Do you want to proceed?')) {
+                                document.getElementById('home-button').textContent = 'Happy';
+                            } else {
+                                document.getElementById('home-button').textContent = 'Sad';
+                            }
+                        }}>Alert</button>
+                        <button id="home-button2" className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => {
+                            setNoOfClicks(noOfClicks + 1);
+                            document.getElementById('home-button2').textContent = `Click ${noOfClicks + 1}`;
+                        }}>Click Me</button>
+                        <input type="radio" name="disabled-element" id="disabled" className='disabled:cursor-not-allowed' disabled/>
+                        <input type="checkbox" name="select-example" id="select" />
+                    </div>
                 </section>
                 <section id="about" className="mb-8 flex flex-col items-center">
                     <h2 className="text-2xl font-semibold">About</h2>
@@ -47,14 +51,18 @@ function ComplexDOM() {
                 </section>
                 <section id="contact" className="mb-8 flex flex-col items-center">
                     <h2 className="text-2xl font-semibold">Contact</h2>
-                    <form id="contact-form" className="space-y-4" onSubmit={handleSubmit}>
+                    <form id="contact-form" className="space-y-4">
                         <div>
                             <label htmlFor="email" className="block">Email:</label>
-                            <input type="text" id="email" name="email" className="border p-2 w-full" />
+                            <input type="text" id="email" name="email" className="border p-2 w-full" onChange={(e) => {
+                                setEmail(e.target.value);
+                            }} value={email}/>
                         </div>
                         <div>
                             <label htmlFor="message" className="block">Message:</label>
-                            <input type="text" id="message" name="message" className="border p-2 w-full" />
+                            <input type="text" id="message" name="message" className="border p-2 w-full" onChange={(e) => {
+                                setMessage(e.target.value);
+                            }} value={message}/>
                         </div>
                         <button type="submit" id="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
                         <p id="result" className="mt-2">You typed: {email} {message}</p>
