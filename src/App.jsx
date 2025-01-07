@@ -10,7 +10,6 @@ const App = () => {
       <Route path="/student-application" element={<StudentApplication />} />
       <Route path="/complex-dom" element={<ComplexDOM />} />
       <Route path="/new-window" element={<NewWindow />} />
-      
     </Routes>
   );
 };
